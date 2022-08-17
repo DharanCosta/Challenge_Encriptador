@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Decodificador de Texto</title>
+</head>
+<body>
+    <!-- Inputs do usuário -->
+    <div class="area1">
+        <img class="logo" src="assets/alura.png">
+        <div class="areainput">
+            <!-- <h1>Digite seu texto</h1> -->
+            <textarea id="input" name="texto para ser encriptado" rows="8" cols="45" placeholder="Digite seu texto"></textarea>
+            <div>
+                <div class="textinfo">
+                    <img src="assets/InfoIcon.png">
+                    <p>Apenas letras minúsculas e sem acento.</p>
+                </div>
+                <div class="areabuttons">
+                    <button class="cript" id="cript" onclick="cript()"> Criptografar </button>
+                    <button class="decript" id="decript" onclick="decript()"> Descriptografar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Outputs -->
+    <div class="output">
+        <div class="outdefcont" id="default">
+            <img src="assets/High quality products 1 1.png" alt="">
+            <h3>Nenhuma mensagem encontrada</h3>
+            <p>Digite um texto que você deseja criptografar ou descriptografar.</p>
+        </div>
+        <div class="outcript" id="result" >
+            <h3 id="outTitle"></h3>
+            <textarea id="texttransformed" name="resultado"  class="texttransformed"></textarea>
+            <button class="copy" id="copy" onclick="copy()">Copiar</button>
+        </div>
+        
+    </div>
+<!-- Footer -->
+    <footer>
+        <p align="center" > Copyright (c) 2022 Dharan Costa <br>
+            All Rights Reserved</p>
+
+    </footer>
+
+</body>
+</html>
+<script>
+     document.getElementById('result').style.display = "none";
+
+
+    function cript(){
+        let input = document.getElementById('input').value;
+        input = input.replace(/e/g, 'enter');
+        input = input.replace(/i/g, 'imes');
+        input = input.replace(/a/g, 'ai');
+        input = input.replace(/o/g, 'ober');
+        input = input.replace(/u/g, 'ufat');
+        showOutput(input, 1);
+    }
+
+    function decript(){
+        let input = document.getElementById('input').value;
+        input = input.replace(/enter/g,'e' );
+        input = input.replace(/imes/g ,'i');
+        input = input.replace(/ai/g  ,'a');
+        input = input.replace(/ober/g ,'o' );
+        input = input.replace(/ufat/g ,'u' );
+        showOutput(input, 0);
+    }
+
+    function showOutput(input, i) {
+    document.getElementById('default').style.display = "none";
+    document.getElementById('result').style.display = "inline";
+    if (i === 1) {
+        document.getElementById("outTitle").innerHTML = "Texto encriptado:";
+        document.getElementById('texttransformed').innerHTML = input;
+        document.getElementsByClassName("copy").style.display= "inline";
+    
+    } else {
+        document.getElementById("outTitle").innerHTML = "Texto decriptado:";
+        document.getElementById('texttransformed').innerHTML = input;
+        document.getElementsByClassName("copy").style.display= "inline";
+    
+    }
+    }
+
+    function copy(){
+            var copiar = document.getElementById("texttransformed");
+            copiar.select();
+            document.execCommand("copy");
+            alert("O texto é: " + copiar.value);
+    }
+    
+
+    
+
+
+</script>
